@@ -8,6 +8,26 @@
 
 using std::string;
 
+class myuser
+{
+	private:
+		int ID;
+		string password;
+	public:
+
+};
+
+class data
+{
+	private:
+		int ID;
+		string title;
+		string line;
+		string column[];
+	public:
+
+};
+
 
 int main()
 {
