@@ -5,10 +5,28 @@
 #include <unistd.h>
 #include <string>
 #include <arpa/inet.h>
+#include <forward_list>
+#include <vector>
+#include <cstring>
 
 using std::string;
 
-class myuser
+void create_and_operate_forward_list(std::forward_list<int>& flist)
+{
+
+	flist.push_front(1);
+	flist.push_front(2);
+	flist.push_front(3);
+
+	std::cout << "Forward List:";
+	for (int value : flist)
+	{
+		std::cout << value << " ";
+	}
+	std::cout << std::endl;
+}
+
+	class myuser
 {
 	private:
 		int ID;
