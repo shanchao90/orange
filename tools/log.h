@@ -1,5 +1,7 @@
 #include <stdio.h>
-#include<time.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
 
 // 日志级别
 typedef enum{
