@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
+#include <safeclib/safe_str_lib.h>
 // 日志级别
 typedef enum{
     LOG_INFO, //信息

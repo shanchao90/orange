@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <safeclib/safe_str_lib.h>
 
 typedef struct Node{
 	int data;
