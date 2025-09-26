@@ -47,10 +47,6 @@ pn findNode(int data,pn p){
     }
     return tp;
 }
- 
-
-
-
 
 
 
