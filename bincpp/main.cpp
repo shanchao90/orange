@@ -70,12 +70,6 @@ class Complex{
             ret.image = this->image * other.real + other.image * this->real;
             return ret;
         }
-        Complex operator++()const {
-            Complex ret;
-            ret.real++;
-            ret.image++;
-            return ret;
-        }
         void Print() {
             if (image > 0)
                 cout << this->real << '+' <<  this->image  << 'i' << endl;
@@ -84,8 +78,13 @@ class Complex{
             if (image < 0)
                 cout << this->real <<  this->image  << 'i' << endl;
         }
-
-
+        
+        Complex operator++(){
+            this->real += 1;
+            this->image += 1;
+            return *this;
+        }
+        
     private:
         int real;
         int image;
@@ -106,6 +105,8 @@ ostream& operator<<(ostream& os,const Complex &other) {
     return os;
 } 
 
+    
+
 void friendVisit(People*p){
     cout << "访问" << p->m_House << endl;
     cout << "访问" << p->m_Car << endl;
@@ -122,6 +123,5 @@ int main(){
    Complex a(10,-20); 
    Complex b(1,2);
    Complex c (3,0);
-   cout << a * b << endl;
    return 0;
 }
