@@ -79,12 +79,21 @@ class Complex{
                 cout << this->real <<  this->image  << 'i' << endl;
         }
         
-        Complex operator++(){
+        Complex& operator++(){
             this->real += 1;
             this->image += 1;
             return *this;
         }
-        
+        Complex& operator--(){
+            this->real -= 1;
+            this->image -= 1;
+            return *this;
+        }
+        Complex operator++(int){
+            ++real;
+            ++image;
+            return Complex(real,image); 
+        } 
     private:
         int real;
         int image;
