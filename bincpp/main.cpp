@@ -94,6 +94,11 @@ class Complex{
             ++image;
             return Complex(real,image); 
         } 
+        Complex operator--(int){
+            --real;
+            --image;
+            return Complex(real,image);
+        }
     private:
         int real;
         int image;
@@ -105,21 +110,84 @@ bool operator==(const Complex &a,const Complex &b) {
 }
  
 ostream& operator<<(ostream& os,const Complex &other) {
-    if (other.image > 0) {
+    if (other.image > 0 && other.real == 0) {
+        os << other.image  << 'i'; }
+    else if (other.image > 0) {
         os << other.real << '+' <<  other.image  << 'i'; }
     if (other.image == 0) {
         os << other.real; }
-    if (other.image < 0) {
+    if (other.image < 0 && other.real == 0) {
+        os << other.image  << 'i'; }
+    else if (other.image < 0) {
         os << other.real <<  other.image  << 'i'; }
     return os;
-} 
-
-    
+}  
 
 void friendVisit(People*p){
     cout << "访问" << p->m_House << endl;
     cout << "访问" << p->m_Car << endl;
 }
+
+
+typedef enum{
+    STATE_IDLE, //空闲
+    STATE_RECEIVING, //接受数据
+    STATE_PROCESSING, //处理数据
+    STATE_SENDING, //发送 
+    STATE_ERROR //错误
+}State_t;
+
+typedef State_t (*StateHandler)(void);
+
+
+bool data_available(){
+    return 1;
+}
+
+
+State_t handle_idle(void){
+    if (data_available()) {
+        return STATE_RECEIVING;
+    }
+    return STATE_IDLE;
+}
+
+bool receive_data(){
+    return 1;
+}
+
+State_t handle_receiving(void) {
+    receive_data();
+    return STATE_PROCESSING;
+}
+
+State_t handle_processing(void) {
+    return STATE_PROCESSING;
+}
+
+State_t handle_sending(void) {
+    return STATE_SENDING;
+}
+
+State_t handle_error(void) {
+    return STATE_ERROR;
+}
+
+const StateHandler state_table[] = {
+    [STATE_IDLE] = handle_idle,
+    [STATE_RECEIVING] = handle_receiving,
+    [STATE_PROCESSING] = handle_processing,
+    [STATE_SENDING] = handle_sending,
+    [STATE_ERROR] = handle_error
+};
+
+void state_machine_run(void) {
+    static State_t current_state = STATE_IDLE;
+    current_state = state_table[current_state]();
+}
+
+
+
 
 int main(){
    Hero h;
@@ -129,8 +197,19 @@ int main(){
    friendVisit(&p);
    PeopleFriend pf;
    pf.visit(&p);
-   Complex a(10,-20); 
-   Complex b(1,2);
-   Complex c (3,0);
+   Complex a(0,0); 
+   Complex b(0,2);
+   Complex c(0,-2); 
+   Complex d(1,0);
+   Complex e(-1,0);
+   Complex f(1,-9);
+   Complex g(-1,9);
+   cout << a << endl;
+   cout << b << endl;
+   cout << c << endl;
+   cout << d << endl;
+   cout << e << endl;
+   cout << f << endl;
+   cout << g << endl;
    return 0;
 }
