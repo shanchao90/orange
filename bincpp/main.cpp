@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 class Hero{
@@ -211,5 +212,7 @@ int main(){
    cout << e << endl;
    cout << f << endl;
    cout << g << endl;
+   vector<int> v{1,2,3};
+   cout << v.size() << "\n";
    return 0;
 }
